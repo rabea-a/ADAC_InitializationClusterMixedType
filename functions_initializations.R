@@ -444,61 +444,7 @@ intis_nbh.dens <- function(dat, k){
 
 
 
-# # Reddy, Jana (kMeans): voronoi circles
-# inits_vcircles_reddy <- function(dat, k){
-#   
-# }
 
-
-### Mail on 20221107: explanation of determination of L (formular 17)
-# ### Jia and Song: 
-# intis_nbh_jiasong <- function(dat, k){
-#   
-#   # determine object to save initial prototypes
-#   protos_initial <- dat[0,]
-#   
-#   # determine distances between all pairs of objects:
-#   lambda <- lambda_kproto(x = dat)
-#   all_dists <- dists_kproto(x = dat, lambda = lambda)
-#   
-#   # # average distance between all pairs of objects
-#   bar_d <- sum(all_dists$dist)/(nrow(all_dists)-nrow(dat))
-#   
-#   # determine local neighborhood density
-#   # rho_i for every object, which is the sum of dists to other objects which are <= d_c
-#   # "d_c is a critical value that limits the search scope"
-#   d_c <- bar_d #AnmR.: willkuerlich! was ist sinnvoll???
-#   rho <- numeric()
-#   for(i in 1:nrow(dat)){
-#     # noteR: -1 because the distance between X_i and X_i is included and always < d_c...
-#     rho[i] <- sum(all_dists[which(rowSums(mapply("==", dat[i,], all_dists[, 1:ncol(dat)])) == ncol(dat)), ]$dist <= d_c) - 1
-#   }
-#   dat_plus <- cbind(dat, rho)
-#   dat_plus <- dat_plus[sort.int(rho, index.return = TRUE, decreasing = TRUE)$ix,]
-#   
-#   
-#   protos_initial <- dat_plus[1,]
-#   for(j in 2:nrow(dat)){
-#     
-#     # determine distance threshold
-#     for(q in 1:nrow(protos_initial)){
-#       L <- ifelse(###noteR: which condition? iterates x_j and x_i is fixed??,
-#                   #min dist to any other object of dat
-#                   min(dists_kproto(x = dat_plus[j,1:ncol(dat)], y = dat_plus[-j,1:ncol(dat)], lambda = lambda)[,"dist"]),
-#                   #max dist to any other object of dat
-#                   max(dists_kproto(x = dat_plus[j,1:ncol(dat)], y = dat_plus[-j,1:ncol(dat)], lambda = lambda)[,"dist"])
-#                   )
-#       
-#       if(all(dists_kproto(x = dat_plus[j,1:ncol(dat)], y = protos_initial[,1:ncol(dat)], lambda = lambda)[,"dist"] < L)){
-#         protos_initial <- rbind(protos_initial,dat_plus[j,])
-#       }
-#       
-#     }
-#     
-#   }
-#   
-#   
-# }
 
 
 
