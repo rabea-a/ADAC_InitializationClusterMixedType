@@ -23,7 +23,7 @@ for(i in 1:nrow(simstudy_trial_design)){
     simstudy_results[[i]][[m]] <- vector("list", 10)
     #  1 = "nstart = 1" 
     #  2 = "nstart = 3" 
-    #  3 = "nstart = 10"
+    #  3 = "nstart = 16"
     #  4 = "nstart based on expected cluster"
     #  5 = "selection by max. distance" (Kaufman, Rousseeuw; 1990)
     #  6 = "selection by centrality" (Katsavounidis et al.; 1994)
@@ -46,7 +46,7 @@ for(i in 1:nrow(simstudy_trial_design)){
     
     
     
-    ### 1 - nstart.1, 2 - nstart.3, 3 - nstart.10:
+    ### 1 - nstart.1, 2 - nstart.3, 3 - nstart.16:
     time <- Sys.time()
     set.seed(221122)
     simstudy_results[[i]][[m]][[1]][[2]] <- kproto(dat, k = k, nstart = 1, verbose = FALSE)
@@ -65,7 +65,7 @@ for(i in 1:nrow(simstudy_trial_design)){
     
     time <- Sys.time()
     set.seed(221122)
-    simstudy_results[[i]][[m]][[3]][[2]] <- kproto(dat, k = k, nstart = 10, verbose = FALSE)
+    simstudy_results[[i]][[m]][[3]][[2]] <- kproto(dat, k = k, nstart = 16, verbose = FALSE)
     simstudy_results[[i]][[m]][[3]][[3]] <- as.numeric(Sys.time() - time, units="secs")
     simstudy_results[[i]][[m]][[3]][[4]] <- simstudy_results[[i]][[m]][[3]][[2]]$tot.withinss
     simstudy_results[[i]][[m]][[3]][[5]] <- fossil::adj.rand.index(simstudy_dat[[i]][[m]][,1], 
